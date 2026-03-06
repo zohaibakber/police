@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "serialNumber": 1,
+    "fir": "FIR-2024-001",
+    "dated": "2024-01-15",
+    "policeStation": "Central Police Station",
+    "complainantName": "Ahmed Khan",
+    "idCardNumber": "35201-1234567-1",
+    "mobileNumber": "0300-1234567",
+    "preparedAndDispatchedBy": "Constable Ali Hassan",
+    "writer": "SI Muhammad Raza",
+    "dateOfIncident": "2024-01-14",
+    "status": "registered"
+  },
+  {
+    "id": 2,
+    "serialNumber": 2,
+    "fir": "FIR-2024-002",
+    "dated": "2024-01-16",
+    "policeStation": "Model Town Police Station",
+    "complainantName": "Fatima Bibi",
+    "idCardNumber": "35202-7654321-2",
+    "mobileNumber": "0321-9876543",
+    "preparedAndDispatchedBy": "Constable Usman Ahmed",
+    "writer": "SI Khalid Mahmood",
+    "dateOfIncident": "2024-01-15",
+    "status": "under_investigation"
+  },
+  {
+    "id": 3,
+    "serialNumber": 3,
+    "fir": "FIR-2024-003",
+    "dated": "2024-01-17",
+    "policeStation": "Gulberg Police Station",
+    "complainantName": "Hassan Ali",
+    "idCardNumber": "35203-1122334-3",
+    "mobileNumber": "0333-5556677",
+    "preparedAndDispatchedBy": "Constable Bilal Khan",
+    "writer": "SI Asadullah",
+    "dateOfIncident": "2024-01-16",
+    "status": "closed"
+  },
+  {
+    "id": 4,
+    "serialNumber": 4,
+    "fir": "FIR-2024-004",
+    "dated": "2024-01-18",
+    "policeStation": "Cantt Police Station",
+    "complainantName": "Sanaullah Khan",
+    "idCardNumber": "35204-5566778-4",
+    "mobileNumber": "0345-1112233",
+    "preparedAndDispatchedBy": "Constable Imran Shah",
+    "writer": "SI Farooq Ahmed",
+    "dateOfIncident": "2024-01-17",
+    "status": "pending"
+  },
+  {
+    "id": 5,
+    "serialNumber": 5,
+    "fir": "FIR-2024-005",
+    "dated": "2024-01-19",
+    "policeStation": "DHA Police Station",
+    "complainantName": "Zainab Akhtar",
+    "idCardNumber": "35205-9988776-5",
+    "mobileNumber": "0301-4445566",
+    "preparedAndDispatchedBy": "Constable Rashid Mehmood",
+    "writer": "SI Tariq Mahmood",
+    "dateOfIncident": "2024-01-18",
+    "status": "registered"
+  }
+]
