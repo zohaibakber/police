@@ -18,7 +18,7 @@ const RootLayout = () => (
         <SidebarProvider
           style={
             {
-              "--sidebar-width": "calc(var(--spacing) * 72)",
+              "--sidebar-width": "calc(var(--spacing) * 64)",
               "--header-height": "calc(var(--spacing) * 12)",
             } as React.CSSProperties
           }
@@ -35,7 +35,10 @@ const RootLayout = () => (
         </SidebarProvider>
         <TanStackDevtools
           plugins={[
-            { name: "TanStack Router", render: <TanStackRouterDevtoolsPanel /> },
+            {
+              name: "TanStack Router",
+              render: <TanStackRouterDevtoolsPanel />,
+            },
             formDevtoolsPlugin(),
           ]}
         />
