@@ -23,7 +23,6 @@ import {
   FileTextIcon,
   Settings2Icon,
   CircleHelpIcon,
-  SearchIcon,
   DatabaseIcon,
   FileChartColumnIcon,
   FileIcon,
@@ -121,11 +120,6 @@ const data = {
       title: "Get Help",
       url: "#",
       icon: <CircleHelpIcon />,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: <SearchIcon />,
     },
   ],
   documents: [

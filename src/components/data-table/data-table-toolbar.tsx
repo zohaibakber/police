@@ -69,7 +69,9 @@ export function DataTableToolbar({
                 checked={col.getIsVisible()}
                 onCheckedChange={(value) => col.toggleVisibility(!!value)}
               >
-                {col.id.replace(/([A-Z])/g, " $1").trim()}
+                {typeof col.columnDef.header === "string"
+                  ? col.columnDef.header
+                  : col.id.replace(/([A-Z])/g, " $1").trim()}
               </DropdownMenuCheckboxItem>
             ))}
         </DropdownMenuContent>

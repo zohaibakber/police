@@ -1,6 +1,7 @@
 import * as React from "react";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { DataTable, type FIR } from "@/components/data-table";
+import { useCommandAddFir } from "@/components/command-palette";
 import { FirFormDialog } from "@/components/fir-form";
 import {
   AlertDialog,
@@ -46,6 +47,8 @@ function Index() {
     setEditingFir(null);
     setFormOpen(true);
   };
+
+  useCommandAddFir(handleAdd);
 
   const handleEdit = (fir: FIR) => {
     setEditingFir(fir);
