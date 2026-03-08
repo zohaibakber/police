@@ -28,6 +28,23 @@ pub fn run() {
             );",
             kind: MigrationKind::Up,
         },
+        Migration {
+            version: 2,
+            description: "create_templates_table",
+            sql: "CREATE TABLE IF NOT EXISTS templates (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                workflow_step TEXT NOT NULL CHECK(workflow_step IN ('pending', 'registered', 'under_investigation', 'closed')),
+                source_mode TEXT NOT NULL CHECK(source_mode IN ('editor', 'docx')),
+                content TEXT NOT NULL,
+                docx_file_name TEXT,
+                placeholders_json TEXT NOT NULL DEFAULT '[]',
+                status TEXT NOT NULL CHECK(status IN ('active', 'inactive')),
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );",
+            kind: MigrationKind::Up,
+        },
     ];
 
     tauri::Builder::default()

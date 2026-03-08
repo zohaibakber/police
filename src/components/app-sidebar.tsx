@@ -124,6 +124,11 @@ const data = {
   ],
   documents: [
     {
+      name: "Templates",
+      url: "/templates",
+      icon: <FileTextIcon />,
+    },
+    {
       name: "Data Library",
       url: "#",
       icon: <DatabaseIcon />,

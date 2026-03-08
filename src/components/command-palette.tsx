@@ -12,6 +12,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { CircleHelpIcon, PlusIcon, Settings2Icon } from "lucide-react";
+import { FileTextIcon } from "lucide-react";
 
 const COMMAND_ADD_FIR = "command:add-fir";
 
@@ -40,7 +41,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
       fn();
       onOpenChange(false);
     },
-    [onOpenChange]
+    [onOpenChange],
   );
 
   return (
@@ -56,31 +57,29 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Actions">
-            <CommandItem
-              onSelect={() =>
-                runCommand(() => dispatchAddFir())
-              }
-            >
+            <CommandItem onSelect={() => runCommand(() => dispatchAddFir())}>
               <PlusIcon />
               Create FIR
             </CommandItem>
           </CommandGroup>
           <CommandGroup heading="Navigation">
             <CommandItem
-              onSelect={() =>
-                runCommand(() => navigate({ to: "/settings" }))
-              }
+              onSelect={() => runCommand(() => navigate({ to: "/settings" }))}
             >
               <Settings2Icon />
               Go to Settings
             </CommandItem>
             <CommandItem
-              onSelect={() =>
-                runCommand(() => navigate({ to: "/about" }))
-              }
+              onSelect={() => runCommand(() => navigate({ to: "/about" }))}
             >
               <CircleHelpIcon />
               Go to About
+            </CommandItem>
+            <CommandItem
+              onSelect={() => runCommand(() => navigate({ to: "/templates" }))}
+            >
+              <FileTextIcon />
+              Go to Templates
             </CommandItem>
           </CommandGroup>
         </CommandList>
