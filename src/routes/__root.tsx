@@ -24,11 +24,11 @@ const RootLayout = () => (
           }
           defaultOpen={false}
         >
-          <AppSidebar variant="inset" collapsible="icon" />
+          <AppSidebar variant="sidebar" collapsible="icon" />
           <SidebarInset>
             <SiteHeader />
-            <div className="flex flex-1 flex-col">
-              <div className="@container/main flex flex-1 flex-col gap-2">
+            <div className="flex min-h-0 flex-1 flex-col">
+              <div className="@container/main flex min-h-0 flex-1 flex-col gap-2">
                 <Outlet />
               </div>
             </div>

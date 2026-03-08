@@ -126,3 +126,112 @@
     cursor: pointer;
   }
 }
+
+@layer components {
+  /* ── Slate RTL editor ── */
+  .slate-editor-surface {
+    @apply rounded-lg border bg-background;
+  }
+
+  .slate-editable {
+    @apply min-h-[350px] px-4 py-3 text-base outline-none;
+    direction: rtl;
+    text-align: right;
+    font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq",
+      "Noto Naskh Arabic", "Segoe UI", serif;
+    line-height: 2.2;
+  }
+
+  .slate-editable [data-slate-placeholder="true"] {
+    @apply text-muted-foreground;
+    direction: rtl;
+    text-align: right;
+  }
+
+  .slate-editable p {
+    @apply my-1;
+  }
+
+  .slate-heading {
+    @apply font-bold;
+  }
+
+  .slate-editable h1 {
+    @apply my-3 text-2xl;
+  }
+
+  .slate-editable h2 {
+    @apply my-3 text-xl;
+  }
+
+  .slate-editable h3 {
+    @apply my-2 text-lg;
+  }
+
+  .slate-list {
+    @apply my-2;
+  }
+
+  .slate-editable ul {
+    @apply list-disc ps-6;
+  }
+
+  .slate-editable ol {
+    @apply list-decimal ps-6;
+  }
+
+  .slate-table {
+    @apply my-4 w-full border-collapse overflow-hidden rounded border bg-background;
+    table-layout: fixed;
+  }
+
+  .slate-cell {
+    @apply border border-border p-2 align-top text-sm;
+  }
+
+  .slate-cell:focus-within {
+    @apply ring-2 ring-ring/30;
+  }
+
+  .slate-placeholder-token {
+    @apply inline-flex items-center rounded bg-primary/10 px-1.5 py-0.5 text-xs font-medium text-primary;
+    user-select: none;
+    cursor: default;
+    vertical-align: baseline;
+  }
+
+  .slate-placeholder-label {
+    @apply font-mono;
+    direction: ltr;
+  }
+
+  .slate-col-resize-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 6px;
+    cursor: col-resize;
+    background: transparent;
+    z-index: 1;
+  }
+
+  .slate-col-resize-handle:hover {
+    background: oklch(var(--primary) / 0.2);
+  }
+
+  .slate-row-resize-handle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    cursor: row-resize;
+    background: transparent;
+    z-index: 1;
+  }
+
+  .slate-row-resize-handle:hover {
+    background: oklch(var(--primary) / 0.2);
+  }
+}

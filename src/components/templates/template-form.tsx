@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { COMMON_PLACEHOLDERS, extractPlaceholders } from "./schema";
-import { VisualTemplateEditor } from "./visual-template-editor";
+import { VisualTemplateEditor } from "./slate-template-editor";
 import {
   templateFormSchema,
   type TemplateFormValues,

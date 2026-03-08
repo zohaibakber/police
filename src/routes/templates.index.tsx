@@ -128,7 +128,7 @@ function TemplatesIndex() {
               <div className="rounded-lg border bg-muted/40 p-3">
                 <h3 className="font-medium">{selectedTemplate.name}</h3>
                 <div
-                  className="mt-2 text-sm text-muted-foreground [&_h2]:text-lg [&_h2]:font-semibold [&_ol]:list-decimal [&_ol]:ps-6 [&_p]:my-2 [&_ul]:list-disc [&_ul]:ps-6"
+                  className="template-rich-content mt-2 text-sm text-muted-foreground"
                   dangerouslySetInnerHTML={{
                     __html: selectedTemplate.content || "<p>No content yet</p>",
                   }}

@@ -1,24 +1,13 @@
 "use client";
 
 import * as React from "react";
-import Underline from "@tiptap/extension-underline";
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 import { useNavigate } from "@tanstack/react-router";
-import {
-  ArrowLeftIcon,
-  BoldIcon,
-  ItalicIcon,
-  ListIcon,
-  ListOrderedIcon,
-  UnderlineIcon,
-} from "lucide-react";
+import { ArrowLeftIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import {
   insertTemplateRecord,
   updateTemplateRecord,
@@ -29,6 +18,7 @@ import {
   extractPlaceholders,
   type TemplateRecord,
 } from "./schema";
+import { VisualTemplateEditor } from "./slate-template-editor";
 
 interface TemplateEditorPageProps {
   template: TemplateRecord | null;
@@ -46,24 +36,6 @@ export function TemplateEditorPage({ template }: TemplateEditorPageProps) {
     () => extractPlaceholders(content),
     [content],
   );
-
-  const editor = useEditor({
-    extensions: [StarterKit, Underline],
-    content: content,
-    onUpdate: ({ editor: activeEditor }) => {
-      setContent(activeEditor.getHTML());
-    },
-    editorProps: {
-      attributes: {
-        class:
-          "prose prose-sm max-w-none min-h-[calc(100vh-14rem)] px-4 py-3 outline-none [&_h2]:text-lg [&_h2]:font-semibold [&_ol]:list-decimal [&_ol]:ps-6 [&_p]:my-2 [&_ul]:list-disc [&_ul]:ps-6",
-      },
-    },
-  });
-
-  const insertPlaceholder = (token: string) => {
-    editor?.chain().focus().insertContent(token).run();
-  };
 
   const handleSave = async () => {
     if (!name.trim()) {
@@ -111,11 +83,8 @@ export function TemplateEditorPage({ template }: TemplateEditorPageProps) {
     }
   };
 
-  if (!editor) return null;
-
   return (
-    <div className="flex h-full flex-col">
-      {/* Top bar */}
+    <div className="flex min-h-0 flex-1 flex-col">
       <div className="flex items-center gap-3 border-b px-4 py-2">
         <Button
           type="button"
@@ -147,97 +116,12 @@ export function TemplateEditorPage({ template }: TemplateEditorPageProps) {
           </Button>
         </div>
       </div>
-
-      {/* Formatting toolbar */}
-      <div className="flex flex-wrap items-center gap-1 border-b px-4 py-1.5">
-        <Button
-          type="button"
-          size="icon-sm"
-          variant={editor.isActive("bold") ? "secondary" : "ghost"}
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          aria-label="Bold"
-        >
-          <BoldIcon className="size-4" />
-        </Button>
-        <Button
-          type="button"
-          size="icon-sm"
-          variant={editor.isActive("italic") ? "secondary" : "ghost"}
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          aria-label="Italic"
-        >
-          <ItalicIcon className="size-4" />
-        </Button>
-        <Button
-          type="button"
-          size="icon-sm"
-          variant={editor.isActive("underline") ? "secondary" : "ghost"}
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
-          aria-label="Underline"
-        >
-          <UnderlineIcon className="size-4" />
-        </Button>
-        <Separator orientation="vertical" className="mx-1 h-6" />
-        <Button
-          type="button"
-          size="icon-sm"
-          variant={editor.isActive("bulletList") ? "secondary" : "ghost"}
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-          aria-label="Bullet List"
-        >
-          <ListIcon className="size-4" />
-        </Button>
-        <Button
-          type="button"
-          size="icon-sm"
-          variant={editor.isActive("orderedList") ? "secondary" : "ghost"}
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          aria-label="Numbered List"
-        >
-          <ListOrderedIcon className="size-4" />
-        </Button>
-        <Separator orientation="vertical" className="mx-1 h-6" />
-        <Button
-          type="button"
-          size="sm"
-          variant={
-            editor.isActive("heading", { level: 2 }) ? "secondary" : "ghost"
-          }
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
-        >
-          H2
-        </Button>
-        <Button
-          type="button"
-          size="sm"
-          variant={editor.isActive("paragraph") ? "secondary" : "ghost"}
-          onClick={() => editor.chain().focus().setParagraph().run()}
-        >
-          Paragraph
-        </Button>
-        <Separator orientation="vertical" className="mx-1 h-6" />
-        <div className="flex flex-wrap items-center gap-1">
-          <span className="text-xs text-muted-foreground">Placeholders:</span>
-          {COMMON_PLACEHOLDERS.map((token) => (
-            <Button
-              key={token}
-              type="button"
-              size="sm"
-              variant="outline"
-              className="h-6 text-xs"
-              onClick={() => insertPlaceholder(token)}
-            >
-              {token}
-            </Button>
-          ))}
-        </div>
-      </div>
-
-      {/* Editor area */}
-      <div className="flex-1 overflow-y-auto bg-background">
-        <EditorContent editor={editor} />
+      <div className="flex min-h-0 flex-1 flex-col bg-background p-4">
+        <VisualTemplateEditor
+          value={content}
+          onChange={setContent}
+          placeholderTokens={COMMON_PLACEHOLDERS}
+        />
       </div>
     </div>
   );
