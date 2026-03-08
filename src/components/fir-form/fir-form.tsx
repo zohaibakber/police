@@ -55,7 +55,7 @@ export function FirForm({ defaultValues, onSubmit, onSuccess }: FirFormProps) {
         form.handleSubmit();
       }}
     >
-      <FieldGroup>
+      <FieldGroup className="grid grid-cols-2 gap-x-4 gap-y-4">
         <form.Field
           name="serialNumber"
           children={(field) => {
@@ -283,7 +283,7 @@ export function FirForm({ defaultValues, onSubmit, onSuccess }: FirFormProps) {
             const isInvalid =
               field.state.meta.isTouched && !field.state.meta.isValid;
             return (
-              <Field data-invalid={isInvalid}>
+              <Field data-invalid={isInvalid} className="col-span-2">
                 <FieldLabel htmlFor={field.name}>Status</FieldLabel>
                 <Select
                   value={field.state.value}
@@ -318,10 +318,7 @@ export function FirForm({ defaultValues, onSubmit, onSuccess }: FirFormProps) {
           }}
         />
       </FieldGroup>
-      <div className="mt-4 flex justify-end gap-2">
-        <Button type="button" variant="outline" onClick={() => form.reset()}>
-          Reset
-        </Button>
+      <div className="mt-4 flex justify-end">
         <Button type="submit" form="fir-form">
           {defaultValues.id ? "Update" : "Create"}
         </Button>

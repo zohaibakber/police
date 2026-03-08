@@ -1,5 +1,6 @@
 import Database from "@tauri-apps/plugin-sql";
 import type { FIR } from "@/components/data-table/schema";
+import { yyyyMmDdToDdMmYyyy, ddMmYyyyToYyyyMmDd } from "@/lib/date-utils";
 
 let db: Database | null = null;
 
@@ -35,14 +36,14 @@ export async function getFirRecords(): Promise<FIR[]> {
     id: row.id,
     serialNumber: row.serial_number,
     fir: row.fir,
-    dated: row.dated,
+    dated: yyyyMmDdToDdMmYyyy(row.dated),
     policeStation: row.police_station,
     complainantName: row.complainant_name,
     idCardNumber: row.id_card_number,
     mobileNumber: row.mobile_number,
     preparedAndDispatchedBy: row.prepared_and_dispatched_by,
     writer: row.writer,
-    dateOfIncident: row.date_of_incident,
+    dateOfIncident: yyyyMmDdToDdMmYyyy(row.date_of_incident),
     status: row.status as FIR["status"],
   }));
 }
@@ -91,14 +92,14 @@ export async function insertFirRecord(data: FirInsert): Promise<number> {
     [
       data.serialNumber,
       data.fir,
-      data.dated,
+      ddMmYyyyToYyyyMmDd(data.dated),
       data.policeStation,
       data.complainantName,
       data.idCardNumber,
       data.mobileNumber,
       data.preparedAndDispatchedBy,
       data.writer,
-      data.dateOfIncident,
+      ddMmYyyyToYyyyMmDd(data.dateOfIncident),
       data.status,
     ]
   );
@@ -112,14 +113,14 @@ export async function updateFirRecord(data: FIR): Promise<void> {
     [
       data.serialNumber,
       data.fir,
-      data.dated,
+      ddMmYyyyToYyyyMmDd(data.dated),
       data.policeStation,
       data.complainantName,
       data.idCardNumber,
       data.mobileNumber,
       data.preparedAndDispatchedBy,
       data.writer,
-      data.dateOfIncident,
+      ddMmYyyyToYyyyMmDd(data.dateOfIncident),
       data.status,
       data.id,
     ]

@@ -49,9 +49,8 @@ export function FirFormDialog({
   initialFir,
   onSuccess,
 }: FirFormDialogProps) {
-  const [defaultValues, setDefaultValues] = React.useState<FirFormValues | null>(
-    null
-  );
+  const [defaultValues, setDefaultValues] =
+    React.useState<FirFormValues | null>(null);
 
   React.useEffect(() => {
     if (open) {
@@ -74,7 +73,9 @@ export function FirFormDialog({
         });
         getNextSerialNumber()
           .then((serialNumber) => {
-            setDefaultValues((prev) => (prev ? { ...prev, serialNumber } : null));
+            setDefaultValues((prev) =>
+              prev ? { ...prev, serialNumber } : null,
+            );
           })
           .catch(() => {});
       }
@@ -111,7 +112,7 @@ export function FirFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>{initialFir ? "Edit FIR" : "Add FIR"}</DialogTitle>
           <DialogDescription>

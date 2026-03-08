@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { parseDdMmYyyy, toDdMmYyyy } from "@/lib/date-utils";
 import { cn } from "@/lib/utils";
 
 interface DatePickerProps {
@@ -22,16 +22,6 @@ interface DatePickerProps {
   className?: string;
 }
 
-function toDate(value: string): Date | undefined {
-  if (!value) return undefined;
-  const d = new Date(value);
-  return isNaN(d.getTime()) ? undefined : d;
-}
-
-function toYYYYMMDD(date: Date): string {
-  return format(date, "yyyy-MM-dd");
-}
-
 export function DatePicker({
   value,
   onChange,
@@ -41,7 +31,7 @@ export function DatePicker({
   className,
 }: DatePickerProps) {
   const [open, setOpen] = React.useState(false);
-  const selected = toDate(value);
+  const selected = parseDdMmYyyy(value);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -58,7 +48,7 @@ export function DatePicker({
             )}
           >
             <CalendarIcon data-icon="inline-start" />
-            {selected ? toYYYYMMDD(selected) : placeholder}
+            {selected ? toDdMmYyyy(selected) : placeholder}
           </Button>
         }
       />
@@ -69,7 +59,7 @@ export function DatePicker({
           selected={selected}
           onSelect={(date) => {
             if (date) {
-              onChange(toYYYYMMDD(date));
+              onChange(toDdMmYyyy(date));
               setOpen(false);
             }
           }}
