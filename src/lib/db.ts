@@ -82,15 +82,14 @@ export async function getNextSerialNumber(): Promise<number> {
   return max + 1;
 }
 
-export type FirInsert = Omit<FIR, "id">;
+export type FirInsert = Omit<FIR, "id" | "serialNumber">;
 
 export async function insertFirRecord(data: FirInsert): Promise<number> {
   const database = await getDatabase();
   const result = await database.execute(
-    `INSERT INTO fir (serial_number, fir, dated, police_station, complainant_name, id_card_number, mobile_number, prepared_and_dispatched_by, writer, date_of_incident, status)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+    `INSERT INTO fir (fir, dated, police_station, complainant_name, id_card_number, mobile_number, prepared_and_dispatched_by, writer, date_of_incident, status)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
     [
-      data.serialNumber,
       data.fir,
       ddMmYyyyToYyyyMmDd(data.dated),
       data.policeStation,

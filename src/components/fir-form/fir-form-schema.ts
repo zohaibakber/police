@@ -3,7 +3,7 @@ import { isDdMmYyyy } from "@/lib/date-utils";
 
 export const firFormSchema = z.object({
   id: z.number(),
-  serialNumber: z.number().min(1, "Serial number must be at least 1"),
+  serialNumber: z.number().optional(),
   fir: z.string().min(1, "FIR is required"),
   dated: z.string().min(1, "Date is required").refine(isDdMmYyyy, "Use dd-mm-yyyy format"),
   policeStation: z.string().min(1, "Police station is required"),

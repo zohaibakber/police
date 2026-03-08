@@ -12,7 +12,6 @@ import {
 import {
   insertFirRecord,
   updateFirRecord,
-  getNextSerialNumber,
   type FirInsert,
 } from "@/lib/db";
 import type { FIR } from "@/components/data-table/schema";
@@ -59,7 +58,7 @@ export function FirFormDialog({
       } else {
         setDefaultValues({
           id: 0,
-          serialNumber: 1,
+          serialNumber: 0,
           fir: "",
           dated: "",
           policeStation: "",
@@ -71,13 +70,6 @@ export function FirFormDialog({
           dateOfIncident: "",
           status: "pending",
         });
-        getNextSerialNumber()
-          .then((serialNumber) => {
-            setDefaultValues((prev) =>
-              prev ? { ...prev, serialNumber } : null,
-            );
-          })
-          .catch(() => {});
       }
     } else {
       setDefaultValues(null);
@@ -89,7 +81,6 @@ export function FirFormDialog({
       await updateFirRecord(value as FIR);
     } else {
       const insert: FirInsert = {
-        serialNumber: value.serialNumber,
         fir: value.fir,
         dated: value.dated,
         policeStation: value.policeStation,
@@ -123,7 +114,7 @@ export function FirFormDialog({
         </DialogHeader>
         {defaultValues && (
           <FirForm
-            key={defaultValues.serialNumber}
+            key={defaultValues.id ? `edit-${defaultValues.id}` : "new"}
             defaultValues={defaultValues}
             onSubmit={handleSubmit}
             onSuccess={handleSuccess}

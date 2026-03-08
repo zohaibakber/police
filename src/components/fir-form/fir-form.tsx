@@ -57,31 +57,6 @@ export function FirForm({ defaultValues, onSubmit, onSuccess }: FirFormProps) {
     >
       <FieldGroup className="grid grid-cols-2 gap-x-4 gap-y-4">
         <form.Field
-          name="serialNumber"
-          children={(field) => {
-            const isInvalid =
-              field.state.meta.isTouched && !field.state.meta.isValid;
-            return (
-              <Field data-invalid={isInvalid}>
-                <FieldLabel htmlFor={field.name}>Serial Number</FieldLabel>
-                <Input
-                  id={field.name}
-                  name={field.name}
-                  type="number"
-                  value={field.state.value}
-                  onBlur={field.handleBlur}
-                  onChange={(e) =>
-                    field.handleChange(Number(e.target.value) || 0)
-                  }
-                  aria-invalid={isInvalid}
-                  placeholder="1"
-                />
-                {isInvalid && <FieldError errors={field.state.meta.errors} />}
-              </Field>
-            );
-          }}
-        />
-        <form.Field
           name="fir"
           children={(field) => {
             const isInvalid =
