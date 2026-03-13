@@ -133,7 +133,6 @@
 }
 
 @layer components {
-  /* ── Slate RTL editor ── */
   .slate-editor-surface {
     @apply rounded-lg border bg-background;
   }
