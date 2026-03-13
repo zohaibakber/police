@@ -42,4 +42,6 @@ jobs:
           releaseBody: "Auto-generated Windows installer for Police."
           includeDebug: false
           args: ""
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
