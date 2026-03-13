@@ -112,9 +112,7 @@ function withTables(editor: Editor) {
       const [cell] = Array.from(
         Editor.nodes(editor, {
           match: (n: any) =>
-            !Editor.isEditor(n) &&
-            SlateElement.isElement(n) &&
-            n.type === "table-cell",
+            !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === "table-cell",
         }),
       );
       if (cell) {
@@ -133,9 +131,7 @@ function withTables(editor: Editor) {
       const [cell] = Array.from(
         Editor.nodes(editor, {
           match: (n: any) =>
-            !Editor.isEditor(n) &&
-            SlateElement.isElement(n) &&
-            n.type === "table-cell",
+            !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === "table-cell",
         }),
       );
       if (cell) {
@@ -153,10 +149,7 @@ function withTables(editor: Editor) {
     if (selection) {
       const [table] = Array.from(
         Editor.nodes(editor, {
-          match: (n: any) =>
-            !Editor.isEditor(n) &&
-            SlateElement.isElement(n) &&
-            n.type === "table",
+          match: (n: any) => !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === "table",
         }),
       );
       if (table) {
@@ -187,42 +180,41 @@ function ResizableTableCell(
     }
   }, [editor, element]);
 
-  const { tablePath, table, rowIndex, colIndex, isLastCol } =
-    React.useMemo(() => {
-      if (!path || path.length < 2) {
-        return {
-          tablePath: null,
-          table: null,
-          rowIndex: 0,
-          colIndex: 0,
-          isLastCol: false,
-          isLastRow: false,
-        };
-      }
-      const rowIndex = path[path.length - 2];
-      const colIndex = path[path.length - 1];
-      const tablePath = path.slice(0, -2);
-      let table: TableElement | null = null;
-      try {
-        table = Editor.node(editor, tablePath)[0] as TableElement;
-      } catch {
-        return {
-          tablePath,
-          table: null,
-          rowIndex,
-          colIndex,
-          isLastCol: false,
-        };
-      }
-      const numCols = table.children[rowIndex]?.children.length ?? 0;
+  const { tablePath, table, rowIndex, colIndex, isLastCol } = React.useMemo(() => {
+    if (!path || path.length < 2) {
+      return {
+        tablePath: null,
+        table: null,
+        rowIndex: 0,
+        colIndex: 0,
+        isLastCol: false,
+        isLastRow: false,
+      };
+    }
+    const rowIndex = path[path.length - 2];
+    const colIndex = path[path.length - 1];
+    const tablePath = path.slice(0, -2);
+    let table: TableElement | null = null;
+    try {
+      table = Editor.node(editor, tablePath)[0] as TableElement;
+    } catch {
       return {
         tablePath,
-        table,
+        table: null,
         rowIndex,
         colIndex,
-        isLastCol: colIndex === numCols - 1,
+        isLastCol: false,
       };
-    }, [editor, path]);
+    }
+    const numCols = table.children[rowIndex]?.children.length ?? 0;
+    return {
+      tablePath,
+      table,
+      rowIndex,
+      colIndex,
+      isLastCol: colIndex === numCols - 1,
+    };
+  }, [editor, path]);
 
   const handleColResize = React.useCallback(
     (e: React.MouseEvent) => {
@@ -287,7 +279,11 @@ function ResizableTableCell(
 
   const mergedRef = React.useCallback(
     (el: HTMLTableCellElement | null) => {
-      (attributes as React.HTMLAttributes<HTMLTableCellElement> & { ref?: (el: HTMLTableCellElement | null) => void }).ref?.(el);
+      (
+        attributes as React.HTMLAttributes<HTMLTableCellElement> & {
+          ref?: (el: HTMLTableCellElement | null) => void;
+        }
+      ).ref?.(el);
       (cellRef as React.MutableRefObject<HTMLTableCellElement | null>).current = el;
     },
     [attributes],
@@ -361,11 +357,7 @@ function ElementRenderer(props: RenderElementProps) {
       return <li {...attributes}>{children}</li>;
     case "table":
       return (
-        <table
-          {...attributes}
-          dir={element.dir ?? "rtl"}
-          className="slate-table"
-        >
+        <table {...attributes} dir={element.dir ?? "rtl"} className="slate-table">
           <tbody>{children}</tbody>
         </table>
       );
@@ -396,10 +388,7 @@ function ElementRenderer(props: RenderElementProps) {
           {...attributes}
           dir={element.type === "paragraph" ? (element.dir ?? "rtl") : "rtl"}
           style={{
-            textAlign:
-              element.type === "paragraph"
-                ? (element.align ?? "right")
-                : "right",
+            textAlign: element.type === "paragraph" ? (element.align ?? "right") : "right",
           }}
         >
           {children}
@@ -414,11 +403,7 @@ function PlaceholderBadge({
   element,
 }: RenderElementProps & { element: PlaceholderElement }) {
   return (
-    <span
-      {...attributes}
-      contentEditable={false}
-      className="slate-placeholder-token"
-    >
+    <span {...attributes} contentEditable={false} className="slate-placeholder-token">
       {children}
       <span className="slate-placeholder-label">{`{{${element.token}}}`}</span>
     </span>
@@ -722,10 +707,7 @@ function getUrduHeaderNodes(): Descendant[] {
                   type: "paragraph",
                   dir: "rtl",
                   align: "right",
-                  children: [
-                    { text: "مقدمہ نمبر: ", bold: true },
-                    { text: "" },
-                  ],
+                  children: [{ text: "مقدمہ نمبر: ", bold: true }, { text: "" }],
                 },
               ],
             },
@@ -889,33 +871,14 @@ export function VisualTemplateEditor({
 
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <Slate
-        editor={editor}
-        initialValue={initialValue}
-        onChange={handleChange}
-      >
+      <Slate editor={editor} initialValue={initialValue} onChange={handleChange}>
         <div className="shrink-0 space-y-3 px-1 pb-3">
           {/* ── Toolbar ── */}
           <div className="flex flex-wrap items-center gap-1">
             {/* Marks */}
-            <MarkButton
-              format="bold"
-              icon={BoldIcon}
-              editor={editor}
-              label="Bold"
-            />
-            <MarkButton
-              format="italic"
-              icon={ItalicIcon}
-              editor={editor}
-              label="Italic"
-            />
-            <MarkButton
-              format="underline"
-              icon={UnderlineIcon}
-              editor={editor}
-              label="Underline"
-            />
+            <MarkButton format="bold" icon={BoldIcon} editor={editor} label="Bold" />
+            <MarkButton format="italic" icon={ItalicIcon} editor={editor} label="Italic" />
+            <MarkButton format="underline" icon={UnderlineIcon} editor={editor} label="Underline" />
 
             <Separator orientation="vertical" className="mx-1 h-6" />
 
@@ -936,24 +899,14 @@ export function VisualTemplateEditor({
             <Separator orientation="vertical" className="mx-1 h-6" />
 
             {/* Alignment */}
-            <AlignButton
-              align="right"
-              icon={AlignRightIcon}
-              editor={editor}
-              label="Align Right"
-            />
+            <AlignButton align="right" icon={AlignRightIcon} editor={editor} label="Align Right" />
             <AlignButton
               align="center"
               icon={AlignCenterIcon}
               editor={editor}
               label="Align Center"
             />
-            <AlignButton
-              align="left"
-              icon={AlignLeftIcon}
-              editor={editor}
-              label="Align Left"
-            />
+            <AlignButton align="left" icon={AlignLeftIcon} editor={editor} label="Align Left" />
 
             <Separator orientation="vertical" className="mx-1 h-6" />
 
@@ -974,15 +927,7 @@ export function VisualTemplateEditor({
                   3×4 Table
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                  onClick={() =>
-                    insertTable(editor, 3, 5, [
-                      "10%",
-                      "20%",
-                      "20%",
-                      "20%",
-                      "30%",
-                    ])
-                  }
+                  onClick={() => insertTable(editor, 3, 5, ["10%", "20%", "20%", "20%", "30%"])}
                 >
                   <TableIcon className="mr-2 size-4" />
                   3×5 Variable Width
@@ -1073,10 +1018,7 @@ export function VisualTemplateEditor({
               </div>
             </ContextMenuTrigger>
             <ContextMenuContent>
-              <TableContextMenuItems
-                editor={editor}
-                savedSelection={contextMenuSelectionRef}
-              />
+              <TableContextMenuItems editor={editor} savedSelection={contextMenuSelectionRef} />
             </ContextMenuContent>
           </ContextMenu>
         </div>
