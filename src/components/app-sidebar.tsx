@@ -11,18 +11,19 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { LayoutDashboardIcon, FileTextIcon, CommandIcon } from "lucide-react";
+import { File02Icon, HomeIcon, Shield02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 const navMain = [
   {
-    title: "Dashboard",
+    title: "Home",
     url: "/",
-    icon: <LayoutDashboardIcon />,
+    icon: <HugeiconsIcon icon={HomeIcon} />,
   },
   {
     title: "Templates",
     url: "/templates",
-    icon: <FileTextIcon />,
+    icon: <HugeiconsIcon icon={File02Icon} />,
   },
 ];
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -35,8 +36,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:p-1.5!"
               render={<a href="#" />}
             >
-              <CommandIcon className="size-5!" />
-              <span className="text-base font-semibold">Acme Inc.</span>
+              <HugeiconsIcon icon={Shield02Icon} className="size-5!" />
+              <span className="text-base font-semibold">Police</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

@@ -104,7 +104,10 @@ export function NavUser({
                 Theme
               </DropdownMenuSubTrigger>
               <DropdownMenuSubContent>
-                <DropdownMenuRadioGroup value={theme} onValueChange={(v) => setTheme(v as "light" | "dark" | "system")}>
+                <DropdownMenuRadioGroup
+                  value={theme}
+                  onValueChange={(v) => setTheme(v as "light" | "dark" | "system")}
+                >
                   <DropdownMenuRadioItem value="light">
                     <SunIcon />
                     Light

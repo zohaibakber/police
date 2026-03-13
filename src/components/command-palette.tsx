@@ -63,21 +63,15 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
             </CommandItem>
           </CommandGroup>
           <CommandGroup heading="Navigation">
-            <CommandItem
-              onSelect={() => runCommand(() => navigate({ to: "/settings" }))}
-            >
+            <CommandItem onSelect={() => runCommand(() => navigate({ to: "/settings" }))}>
               <Settings2Icon />
               Go to Settings
             </CommandItem>
-            <CommandItem
-              onSelect={() => runCommand(() => navigate({ to: "/about" }))}
-            >
+            <CommandItem onSelect={() => runCommand(() => navigate({ to: "/about" }))}>
               <CircleHelpIcon />
               Go to About
             </CommandItem>
-            <CommandItem
-              onSelect={() => runCommand(() => navigate({ to: "/templates" }))}
-            >
+            <CommandItem onSelect={() => runCommand(() => navigate({ to: "/templates" }))}>
               <FileTextIcon />
               Go to Templates
             </CommandItem>

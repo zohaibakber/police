@@ -21,9 +21,7 @@ export interface FirColumnsOptions {
   onDelete?: (fir: FIR) => void;
 }
 
-export function createColumns(
-  options: FirColumnsOptions = {},
-): ColumnDef<FIR>[] {
+export function createColumns(options: FirColumnsOptions = {}): ColumnDef<FIR>[] {
   const { onEdit, onDelete } = options;
 
   return [
@@ -33,13 +31,8 @@ export function createColumns(
         <div className="flex items-center justify-center">
           <Checkbox
             checked={table.getIsAllPageRowsSelected()}
-            indeterminate={
-              table.getIsSomePageRowsSelected() &&
-              !table.getIsAllPageRowsSelected()
-            }
-            onCheckedChange={(value) =>
-              table.toggleAllPageRowsSelected(!!value)
-            }
+            indeterminate={table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected()}
+            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
             aria-label="Select all"
           />
         </div>
@@ -59,9 +52,7 @@ export function createColumns(
     {
       accessorKey: "serialNumber",
       header: "Serial Number",
-      cell: ({ row }) => (
-        <div className="font-medium">{row.original.serialNumber}</div>
-      ),
+      cell: ({ row }) => <div className="font-medium">{row.original.serialNumber}</div>,
     },
     {
       accessorKey: "fir",
@@ -142,9 +133,7 @@ export function createColumns(
     {
       id: "actions",
       header: () => <span className="sr-only">Action</span>,
-      cell: ({ row }) => (
-        <DataTableRowActions row={row} onEdit={onEdit} onDelete={onDelete} />
-      ),
+      cell: ({ row }) => <DataTableRowActions row={row} onEdit={onEdit} onDelete={onDelete} />,
       enableSorting: false,
       enableHiding: false,
     },

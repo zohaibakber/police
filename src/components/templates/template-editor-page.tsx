@@ -8,16 +8,8 @@ import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  insertTemplateRecord,
-  updateTemplateRecord,
-  type TemplateInsert,
-} from "@/lib/db";
-import {
-  COMMON_PLACEHOLDERS,
-  extractPlaceholders,
-  type TemplateRecord,
-} from "./schema";
+import { insertTemplateRecord, updateTemplateRecord, type TemplateInsert } from "@/lib/db";
+import { COMMON_PLACEHOLDERS, extractPlaceholders, type TemplateRecord } from "./schema";
 import { VisualTemplateEditor } from "./slate-template-editor";
 
 interface TemplateEditorPageProps {
@@ -32,10 +24,7 @@ export function TemplateEditorPage({ template }: TemplateEditorPageProps) {
   const [content, setContent] = React.useState(template?.content ?? "");
   const [saving, setSaving] = React.useState(false);
 
-  const placeholders = React.useMemo(
-    () => extractPlaceholders(content),
-    [content],
-  );
+  const placeholders = React.useMemo(() => extractPlaceholders(content), [content]);
 
   const handleSave = async () => {
     if (!name.trim()) {

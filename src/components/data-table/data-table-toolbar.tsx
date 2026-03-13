@@ -53,29 +53,29 @@ export function DataTableToolbar({
       </div>
       <div className="flex items-center gap-2">
         <DropdownMenu>
-        <DropdownMenuTrigger render={<Button variant="outline" size="sm" />}>
-          <Columns3Icon data-icon="inline-start" />
-          Columns
-          <ChevronDownIcon data-icon="inline-end" />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48">
-          {table
-            .getAllColumns()
-            .filter((col) => typeof col.accessorFn !== "undefined" && col.getCanHide())
-            .map((col) => (
-              <DropdownMenuCheckboxItem
-                key={col.id}
-                className="capitalize"
-                checked={col.getIsVisible()}
-                onCheckedChange={(value) => col.toggleVisibility(!!value)}
-              >
-                {typeof col.columnDef.header === "string"
-                  ? col.columnDef.header
-                  : col.id.replace(/([A-Z])/g, " $1").trim()}
-              </DropdownMenuCheckboxItem>
-            ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
+          <DropdownMenuTrigger render={<Button variant="outline" size="sm" />}>
+            <Columns3Icon data-icon="inline-start" />
+            Columns
+            <ChevronDownIcon data-icon="inline-end" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-48">
+            {table
+              .getAllColumns()
+              .filter((col) => typeof col.accessorFn !== "undefined" && col.getCanHide())
+              .map((col) => (
+                <DropdownMenuCheckboxItem
+                  key={col.id}
+                  className="capitalize"
+                  checked={col.getIsVisible()}
+                  onCheckedChange={(value) => col.toggleVisibility(!!value)}
+                >
+                  {typeof col.columnDef.header === "string"
+                    ? col.columnDef.header
+                    : col.id.replace(/([A-Z])/g, " $1").trim()}
+                </DropdownMenuCheckboxItem>
+              ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
         {onAdd && (
           <Button size="sm" onClick={onAdd}>
             <PlusIcon />

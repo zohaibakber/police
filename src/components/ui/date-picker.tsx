@@ -5,11 +5,7 @@ import { CalendarIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { parseDdMmYyyy, toDdMmYyyy } from "@/lib/date-utils";
 import { cn } from "@/lib/utils";
 
@@ -44,7 +40,7 @@ export function DatePicker({
             className={cn(
               "w-full justify-start text-left font-normal",
               !value && "text-muted-foreground",
-              className
+              className,
             )}
           >
             <CalendarIcon data-icon="inline-start" />
