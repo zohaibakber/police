@@ -31,7 +31,6 @@ import {
   ItalicIcon,
   ListIcon,
   ListOrderedIcon,
-  PlusIcon,
   RowsIcon,
   TableIcon,
   Trash2Icon,
@@ -1005,15 +1004,6 @@ export function VisualTemplateEditor({
                   renderLeaf={LeafRenderer}
                   onKeyDown={handleKeyDown}
                   placeholder="...یہاں اردو متن لکھیں"
-                  style={{
-                    direction: "rtl",
-                    textAlign: "right",
-                    fontFamily:
-                      '"Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic", "Segoe UI", serif',
-                    minHeight: "350px",
-                    lineHeight: 2.2,
-                    fontSize: "16px",
-                  }}
                 />
               </div>
             </ContextMenuTrigger>
@@ -1042,7 +1032,6 @@ export function VisualTemplateEditor({
                     insertPlaceholder(editor, cleanToken);
                   }}
                 >
-                  <PlusIcon className="mr-1 size-3" />
                   {token}
                 </Button>
               );
