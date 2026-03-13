@@ -9,11 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  insertFirRecord,
-  updateFirRecord,
-  type FirInsert,
-} from "@/lib/db";
+import { insertFirRecord, updateFirRecord, type FirInsert } from "@/lib/db";
 import type { FIR } from "@/components/data-table/schema";
 import { FirForm } from "./fir-form";
 import type { FirFormValues } from "./fir-form-schema";
@@ -42,14 +38,8 @@ function firToFormValues(fir: FIR): FirFormValues {
   };
 }
 
-export function FirFormDialog({
-  open,
-  onOpenChange,
-  initialFir,
-  onSuccess,
-}: FirFormDialogProps) {
-  const [defaultValues, setDefaultValues] =
-    React.useState<FirFormValues | null>(null);
+export function FirFormDialog({ open, onOpenChange, initialFir, onSuccess }: FirFormDialogProps) {
+  const [defaultValues, setDefaultValues] = React.useState<FirFormValues | null>(null);
 
   React.useEffect(() => {
     if (open) {
@@ -103,13 +93,13 @@ export function FirFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl" dir="rtl">
         <DialogHeader>
-          <DialogTitle>{initialFir ? "Edit FIR" : "Add FIR"}</DialogTitle>
+          <DialogTitle>{initialFir ? "ایف آئی آر میں ترمیم" : "نئی ایف آئی آر"}</DialogTitle>
           <DialogDescription>
             {initialFir
-              ? "Update the First Information Report details."
-              : "Create a new First Information Report."}
+              ? "ایف آئی آر کی تفصیلات میں ضروری ترمیم کریں۔"
+              : "نئی ایف آئی آر کی تفصیلات درج کریں۔"}
           </DialogDescription>
         </DialogHeader>
         {defaultValues && (

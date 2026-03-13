@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "name": "Pending Case Brief",
-    "content": "FIR {{fir}} dated {{dated}} at {{policeStation}} filed by {{complainantName}}.",
+    "name": "زیر التواء کیس کا خلاصہ",
+    "content": "ایف آئی آر {{fir}} مورخہ {{dated}} تھانہ {{policeStation}} بذریعہ {{complainantName}} درج ہوئی۔",
     "placeholders": ["fir", "dated", "policeStation", "complainantName"],
     "createdAt": "2026-03-08T08:00:00.000Z",
     "updatedAt": "2026-03-08T08:00:00.000Z"
   },
   {
     "id": 2,
-    "name": "Closed Case Note",
-    "content": "Use this DOCX template with placeholders {{fir}}, {{status}}, {{dateOfIncident}}.",
+    "name": "نمٹا ہوا کیس نوٹ",
+    "content": "یہ DOCX ٹیمپلیٹ استعمال کریں، جس میں جگہ دار {{fir}}، {{status}}، {{dateOfIncident}} ہیں۔",
     "placeholders": ["fir", "status", "dateOfIncident"],
     "createdAt": "2026-03-08T08:00:00.000Z",
     "updatedAt": "2026-03-08T08:00:00.000Z"

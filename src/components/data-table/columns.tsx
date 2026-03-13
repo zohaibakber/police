@@ -51,12 +51,12 @@ export function createColumns(options: FirColumnsOptions = {}): ColumnDef<FIR>[]
     },
     {
       accessorKey: "serialNumber",
-      header: "Serial Number",
+      header: "سیریل نمبر",
       cell: ({ row }) => <div className="font-medium">{row.original.serialNumber}</div>,
     },
     {
       accessorKey: "fir",
-      header: "FIR",
+      header: "ایف آئی آر",
       cell: ({ row }) => (
         <div className="max-w-[120px] truncate" title={row.original.fir}>
           {row.original.fir}
@@ -66,47 +66,47 @@ export function createColumns(options: FirColumnsOptions = {}): ColumnDef<FIR>[]
     },
     {
       accessorKey: "dated",
-      header: "Dated",
+      header: "مورخہ",
       cell: ({ row }) => row.original.dated,
     },
     {
       accessorKey: "policeStation",
-      header: "Police Station",
+      header: "تھانہ",
       cell: ({ row }) => row.original.policeStation,
     },
     {
       accessorKey: "complainantName",
-      header: "Complainant's Name",
+      header: "شکایت کنندہ کا نام",
       cell: ({ row }) => row.original.complainantName,
     },
     {
       accessorKey: "idCardNumber",
-      header: "ID Card Number",
+      header: "شناختی کارڈ نمبر",
       cell: ({ row }) => row.original.idCardNumber,
     },
     {
       accessorKey: "mobileNumber",
-      header: "Mobile Number",
+      header: "موبائل نمبر",
       cell: ({ row }) => row.original.mobileNumber,
     },
     {
       accessorKey: "preparedAndDispatchedBy",
-      header: "Prepared and Dispatched by",
+      header: "مرتب و مرسلہ",
       cell: ({ row }) => row.original.preparedAndDispatchedBy,
     },
     {
       accessorKey: "writer",
-      header: "Writer",
+      header: "تحریر کنندہ",
       cell: ({ row }) => row.original.writer,
     },
     {
       accessorKey: "dateOfIncident",
-      header: "Date of Incident",
+      header: "تاریخ وقوعہ",
       cell: ({ row }) => row.original.dateOfIncident,
     },
     {
       accessorKey: "status",
-      header: "Status",
+      header: "اسٹیٹس",
       cell: ({ row }) => {
         const status = row.original.status;
         const variant =
@@ -117,12 +117,12 @@ export function createColumns(options: FirColumnsOptions = {}): ColumnDef<FIR>[]
               : "outline";
         const label =
           status === "pending"
-            ? "Pending"
+            ? "زیر التواء"
             : status === "registered"
-              ? "Registered"
+              ? "رجسٹرڈ"
               : status === "under_investigation"
-                ? "Under Investigation"
-                : "Closed";
+                ? "زیر تفتیش"
+                : "نمٹا دیا گیا";
         return (
           <Badge variant={variant} className="capitalize">
             {label}
@@ -132,7 +132,7 @@ export function createColumns(options: FirColumnsOptions = {}): ColumnDef<FIR>[]
     },
     {
       id: "actions",
-      header: () => <span className="sr-only">Action</span>,
+      header: () => <span className="sr-only">ایکشن</span>,
       cell: ({ row }) => <DataTableRowActions row={row} onEdit={onEdit} onDelete={onDelete} />,
       enableSorting: false,
       enableHiding: false,
@@ -160,22 +160,22 @@ function DataTableRowActions({
             variant="ghost"
             className="flex size-8 text-muted-foreground data-open:bg-muted"
             size="icon"
-            aria-label={`Actions for ${fir.fir}`}
+            aria-label={`اس ایف آئی آر کے لیے ایکشن ${fir.fir}`}
           />
         }
       >
         <EllipsisVerticalIcon />
-        <span className="sr-only">Open menu</span>
+        <span className="sr-only">میمو کھولیں</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuItem onClick={() => onEdit?.(fir)}>
           <PencilIcon />
-          Edit
+          ترمیم
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem variant="destructive" onClick={() => onDelete?.(fir)}>
           <Trash2Icon />
-          Delete
+          حذف کریں
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

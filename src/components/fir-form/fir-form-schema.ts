@@ -19,8 +19,8 @@ export const firFormSchema = z.object({
 export type FirFormValues = z.infer<typeof firFormSchema>;
 
 export const STATUS_OPTIONS = [
-  { value: "pending", label: "Pending" },
-  { value: "registered", label: "Registered" },
-  { value: "under_investigation", label: "Under Investigation" },
-  { value: "closed", label: "Closed" },
+  { value: "pending", label: "زیر التواء" },
+  { value: "registered", label: "رجسٹرڈ" },
+  { value: "under_investigation", label: "زیر تفتیش" },
+  { value: "closed", label: "نمٹا دیا گیا" },
 ] as const;

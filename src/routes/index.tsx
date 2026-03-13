@@ -14,11 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import firDataJson from "@/app/dashboard/fir-data.json";
-import {
-  deleteFirRecord,
-  getFirRecords,
-  seedFirDataIfEmpty,
-} from "@/lib/db";
+import { deleteFirRecord, getFirRecords, seedFirDataIfEmpty } from "@/lib/db";
 import { yyyyMmDdToDdMmYyyy } from "@/lib/date-utils";
 import { toast } from "sonner";
 
@@ -70,12 +66,12 @@ function Index() {
     if (!firToDelete) return;
     try {
       await deleteFirRecord(firToDelete.id);
-      toast.success("FIR deleted successfully");
+      toast.success("ایف آئی آر کامیابی سے حذف ہو گئی");
       setDeleteOpen(false);
       setFirToDelete(null);
       refetch();
     } catch {
-      toast.error("Failed to delete FIR");
+      toast.error("ایف آئی آر حذف نہیں ہو سکی");
     }
   };
 
@@ -83,6 +79,7 @@ function Index() {
     <div className="flex flex-col gap-4 p-2 md:gap-6 md:p-4">
       <DataTable
         data={firData}
+        searchPlaceholder="ایف آئی آر تلاش کریں..."
         onAdd={handleAdd}
         onEdit={handleEdit}
         onDelete={handleDeleteClick}
@@ -96,19 +93,15 @@ function Index() {
       <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete FIR</AlertDialogTitle>
+            <AlertDialogTitle>ایف آئی آر حذف کریں</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete {firToDelete?.fir}? This action
-              cannot be undone.
+              کیا آپ واقعی {firToDelete?.fir} کو حذف کرنا چاہتے ہیں؟ یہ عمل واپسی کے قابل نہیں۔
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <Button
-              variant="destructive"
-              onClick={handleDeleteConfirm}
-            >
-              Delete
+            <AlertDialogCancel>منسوخ کریں</AlertDialogCancel>
+            <Button variant="destructive" onClick={handleDeleteConfirm}>
+              حذف کریں
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

@@ -35,7 +35,7 @@ export function DataTableToolbar({
         {column && (
           <>
             <Label htmlFor="table-search" className="sr-only">
-              Search
+              تلاش
             </Label>
             <InputGroup className="h-8 w-full max-w-sm">
               <InputGroupAddon align="inline-start">
@@ -55,7 +55,7 @@ export function DataTableToolbar({
         <DropdownMenu>
           <DropdownMenuTrigger render={<Button variant="outline" size="sm" />}>
             <Columns3Icon data-icon="inline-start" />
-            Columns
+            کالمز
             <ChevronDownIcon data-icon="inline-end" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
@@ -79,7 +79,7 @@ export function DataTableToolbar({
         {onAdd && (
           <Button size="sm" onClick={onAdd}>
             <PlusIcon />
-            Add FIR
+            نئی ایف آئی آر
           </Button>
         )}
       </div>
