@@ -15,7 +15,6 @@ import {
 import { Button } from "@/components/ui/button";
 import firDataJson from "@/app/dashboard/fir-data.json";
 import { deleteFirRecord, getFirRecords, seedFirDataIfEmpty } from "@/lib/db";
-import { yyyyMmDdToDdMmYyyy } from "@/lib/date-utils";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
@@ -24,12 +23,7 @@ export const Route = createFileRoute("/")({
       await seedFirDataIfEmpty();
       return await getFirRecords();
     } catch {
-      const data = firDataJson as FIR[];
-      return data.map((row) => ({
-        ...row,
-        dated: yyyyMmDdToDdMmYyyy(row.dated),
-        dateOfIncident: yyyyMmDdToDdMmYyyy(row.dateOfIncident),
-      }));
+      return firDataJson as FIR[];
     }
   },
   component: Index,

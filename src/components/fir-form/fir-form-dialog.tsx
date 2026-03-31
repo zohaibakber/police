@@ -23,8 +23,6 @@ interface FirFormDialogProps {
 
 function firToFormValues(fir: FIR): FirFormValues {
   return {
-    id: fir.id,
-    serialNumber: fir.serialNumber,
     fir: fir.fir,
     dated: fir.dated,
     policeStation: fir.policeStation,
@@ -47,8 +45,6 @@ export function FirFormDialog({ open, onOpenChange, initialFir, onSuccess }: Fir
         setDefaultValues(firToFormValues(initialFir));
       } else {
         setDefaultValues({
-          id: 0,
-          serialNumber: 0,
           fir: "",
           dated: "",
           policeStation: "",
@@ -67,21 +63,13 @@ export function FirFormDialog({ open, onOpenChange, initialFir, onSuccess }: Fir
   }, [open, initialFir]);
 
   const handleSubmit = async (value: FirFormValues) => {
-    if (value.id) {
-      await updateFirRecord(value as FIR);
+    if (initialFir) {
+      await updateFirRecord({
+        ...initialFir,
+        ...value,
+      });
     } else {
-      const insert: FirInsert = {
-        fir: value.fir,
-        dated: value.dated,
-        policeStation: value.policeStation,
-        complainantName: value.complainantName,
-        idCardNumber: value.idCardNumber,
-        mobileNumber: value.mobileNumber,
-        preparedAndDispatchedBy: value.preparedAndDispatchedBy,
-        writer: value.writer,
-        dateOfIncident: value.dateOfIncident,
-        status: value.status,
-      };
+      const insert: FirInsert = value;
       await insertFirRecord(insert);
     }
   };
@@ -104,9 +92,10 @@ export function FirFormDialog({ open, onOpenChange, initialFir, onSuccess }: Fir
         </DialogHeader>
         {defaultValues && (
           <FirForm
-            key={defaultValues.id ? `edit-${defaultValues.id}` : "new"}
+            key={initialFir ? `edit-${initialFir.id}` : "new"}
             defaultValues={defaultValues}
             onSubmit={handleSubmit}
+            isEdit={!!initialFir}
             onSuccess={handleSuccess}
           />
         )}

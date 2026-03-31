@@ -34,6 +34,7 @@ export function DatePicker({
       <PopoverTrigger
         render={
           <Button
+            type="button"
             variant="outline"
             id={id}
             aria-invalid={ariaInvalid}
@@ -52,6 +53,25 @@ export function DatePicker({
         <Calendar
           mode="single"
           captionLayout="dropdown"
+          formatters={{
+            formatCaption: (date) =>
+              date.toLocaleDateString("ur-PK", {
+                month: "long",
+                year: "numeric",
+              }),
+            formatWeekdayName: (date) =>
+              date.toLocaleDateString("ur-PK", {
+                weekday: "short",
+              }),
+            formatMonthDropdown: (date) =>
+              date.toLocaleDateString("ur-PK", {
+                month: "long",
+              }),
+            formatYearDropdown: (date) =>
+              date.toLocaleDateString("ur-PK", {
+                year: "numeric",
+              }),
+          }}
           selected={selected}
           onSelect={(date) => {
             if (date) {

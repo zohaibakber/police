@@ -47,7 +47,7 @@ export function SiteHeader() {
               render={
                 <Button
                   variant="outline"
-                  size="icon-sm"
+                  size="sm"
                   aria-label="Search"
                   onClick={() => setCommandOpen(true)}
                 >

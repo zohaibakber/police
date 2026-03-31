@@ -180,14 +180,18 @@ export async function getNextSerialNumber(): Promise<number> {
   return max + 1;
 }
 
-export type FirInsert = Omit<FIR, "id" | "serialNumber">;
+export type FirInsert = Omit<FIR, "id" | "serialNumber"> & {
+  serialNumber?: number;
+};
 
 export async function insertFirRecord(data: FirInsert): Promise<number> {
   const database = await getDatabase();
+  const serialNumber = data.serialNumber ?? (await getNextSerialNumber());
   const result = await database.execute(
-    `INSERT INTO fir (fir, dated, police_station, complainant_name, id_card_number, mobile_number, prepared_and_dispatched_by, writer, date_of_incident, status)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+    `INSERT INTO fir (serial_number, fir, dated, police_station, complainant_name, id_card_number, mobile_number, prepared_and_dispatched_by, writer, date_of_incident, status)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
     [
+      serialNumber,
       data.fir,
       ddMmYyyyToYyyyMmDd(data.dated),
       data.policeStation,

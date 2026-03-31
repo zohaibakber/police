@@ -20,10 +20,11 @@ import { firFormSchema, STATUS_OPTIONS, type FirFormValues } from "./fir-form-sc
 interface FirFormProps {
   defaultValues: FirFormValues;
   onSubmit: (value: FirFormValues) => Promise<void>;
+  isEdit?: boolean;
   onSuccess?: () => void;
 }
 
-export function FirForm({ defaultValues, onSubmit, onSuccess }: FirFormProps) {
+export function FirForm({ defaultValues, onSubmit, isEdit = false, onSuccess }: FirFormProps) {
   const form = useForm({
     defaultValues,
     validators: {
@@ -32,7 +33,7 @@ export function FirForm({ defaultValues, onSubmit, onSuccess }: FirFormProps) {
     onSubmit: async ({ value }) => {
       await onSubmit(value);
       toast.success(
-        value.id ? "ایف آئی آر کامیابی سے اپ ڈیٹ ہو گئی" : "ایف آئی آر کامیابی سے بن گئی",
+        isEdit ? "ایف آئی آر کامیابی سے اپ ڈیٹ ہو گئی" : "ایف آئی آر کامیابی سے بن گئی",
       );
       onSuccess?.();
     },
@@ -271,7 +272,7 @@ export function FirForm({ defaultValues, onSubmit, onSuccess }: FirFormProps) {
       </FieldGroup>
       <div className="mt-4 flex justify-end">
         <Button type="submit" form="fir-form">
-          {defaultValues.id ? "اپ ڈیٹ کریں" : "بنائیں"}
+          {isEdit ? "اپ ڈیٹ کریں" : "بنائیں"}
         </Button>
       </div>
     </form>
