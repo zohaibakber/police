@@ -39,7 +39,7 @@ if (releaseExists === tagName) {
   process.exit(0);
 }
 
-execSync(`gh release create ${tagName} --generate-notes --title \"Release ${tagName}\"`, {
+execSync(`gh release create ${tagName} --verify-tag --generate-notes --title \"Release ${tagName}\"`, {
   stdio: "inherit",
 });
 console.log(`Published GitHub release ${tagName}`);

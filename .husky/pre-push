@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 set -e
 
+REMOTE_NAME="${1:-origin}"
+
 node scripts/release-tag.mjs
+TAG_NAME="v$(node -p "require('./package.json').version")"
+git push --no-verify "$REMOTE_NAME" "$TAG_NAME"
 node scripts/release-github.mjs
