@@ -8,8 +8,11 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
-import { Label } from "@/components/ui/label";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import { Columns3Icon, ChevronDownIcon, PlusIcon, Search } from "lucide-react";
 import type { FIR } from "./schema";
 
@@ -33,22 +36,17 @@ export function DataTableToolbar({
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
       <div className="flex flex-1 flex-wrap items-center gap-2">
         {column && (
-          <>
-            <Label htmlFor="table-search" className="sr-only">
-              تلاش
-            </Label>
-            <InputGroup className="h-8 w-full max-w-sm">
-              <InputGroupAddon align="inline-start">
-                <Search />
-              </InputGroupAddon>
-              <InputGroupInput
-                id="table-search"
-                placeholder={searchPlaceholder}
-                value={filterValue}
-                onChange={(event) => column.setFilterValue(event.target.value)}
-              />
-            </InputGroup>
-          </>
+          <InputGroup className="h-8 w-full max-w-sm" dir="rtl">
+            <InputGroupAddon align="inline-start" className="pl-0 pr-3">
+              <Search />
+            </InputGroupAddon>
+            <InputGroupInput
+              id="table-search"
+              placeholder={searchPlaceholder}
+              value={filterValue}
+              onChange={(event) => column.setFilterValue(event.target.value)}
+            />
+          </InputGroup>
         )}
       </div>
       <div className="flex items-center gap-2">
@@ -61,7 +59,10 @@ export function DataTableToolbar({
           <DropdownMenuContent align="end" className="w-48">
             {table
               .getAllColumns()
-              .filter((col) => typeof col.accessorFn !== "undefined" && col.getCanHide())
+              .filter(
+                (col) =>
+                  typeof col.accessorFn !== "undefined" && col.getCanHide(),
+              )
               .map((col) => (
                 <DropdownMenuCheckboxItem
                   key={col.id}

@@ -58,7 +58,7 @@ export function createColumns(options: FirColumnsOptions = {}): ColumnDef<FIR>[]
       accessorKey: "fir",
       header: "ایف آئی آر",
       cell: ({ row }) => (
-        <div className="max-w-[120px] truncate" title={row.original.fir}>
+        <div className="truncate" title={row.original.fir}>
           {row.original.fir}
         </div>
       ),
