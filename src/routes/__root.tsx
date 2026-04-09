@@ -8,7 +8,7 @@ import { DirectionProvider } from "@/components/ui/direction";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppSidebar } from "@/components/app-sidebar";
-import { SiteHeader } from "@/components/site-header";
+
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { checkForAppUpdate } from "@/lib/updater";
@@ -33,7 +33,6 @@ const RootLayout = () => {
           >
             <AppSidebar variant="sidebar" collapsible="icon" />
             <SidebarInset>
-              <SiteHeader />
               <div className="flex min-h-0 flex-1 flex-col">
                 <div className="@container/main flex min-h-0 flex-1 flex-col gap-2">
                   <Outlet />

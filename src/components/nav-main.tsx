@@ -1,5 +1,7 @@
 "use client";
 
+import { SearchIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -8,16 +10,17 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link } from "@tanstack/react-router";
-import { CirclePlusIcon } from "lucide-react";
 
 export function NavMain({
   items,
+  onCommandPalette,
 }: {
   items: {
     title: string;
     url: string;
     icon?: React.ReactNode;
   }[];
+  onCommandPalette?: () => void;
 }) {
   return (
     <SidebarGroup>
@@ -25,18 +28,19 @@ export function NavMain({
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
-              tooltip="Quick Create"
-              className="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground"
+              tooltip="Command Palette"
+              onClick={onCommandPalette}
             >
-              <CirclePlusIcon />
-              <span>Quick Create</span>
+              <HugeiconsIcon icon={SearchIcon} />
+              <span>Search</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
-        </SidebarMenu>
-        <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title} render={<Link to={item.url} />}>
+              <SidebarMenuButton
+                tooltip={item.title}
+                render={<Link to={item.url} />}
+              >
                 {item.icon}
                 <span>{item.title}</span>
               </SidebarMenuButton>

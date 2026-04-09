@@ -49,7 +49,9 @@ export function NavUser({
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger
-            render={<SidebarMenuButton size="lg" className="aria-expanded:bg-muted" />}
+            render={
+              <SidebarMenuButton size="lg" className="aria-expanded:bg-muted" />
+            }
           >
             <Avatar className="size-8 rounded-lg grayscale">
               <AvatarImage src={user.avatar} alt={user.name} />
@@ -57,7 +59,9 @@ export function NavUser({
             </Avatar>
             <div className="grid flex-1 text-start text-sm leading-tight">
               <span className="truncate font-medium">{user.name}</span>
-              <span className="truncate text-xs text-foreground/70">{user.email}</span>
+              <span className="truncate text-xs text-foreground/70">
+                {user.email}
+              </span>
             </div>
             <EllipsisVerticalIcon className="ms-auto size-4" />
           </DropdownMenuTrigger>
@@ -76,7 +80,9 @@ export function NavUser({
                   </Avatar>
                   <div className="grid flex-1 text-start text-sm leading-tight">
                     <span className="truncate font-medium">{user.name}</span>
-                    <span className="truncate text-xs text-muted-foreground">{user.email}</span>
+                    <span className="truncate text-xs text-muted-foreground">
+                      {user.email}
+                    </span>
                   </div>
                 </div>
               </DropdownMenuLabel>
@@ -87,16 +93,7 @@ export function NavUser({
                 <CircleUserRoundIcon />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCardIcon />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <BellIcon />
-                Notifications
-              </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
                 <SunIcon className="size-4 dark:hidden" />
@@ -106,7 +103,9 @@ export function NavUser({
               <DropdownMenuSubContent>
                 <DropdownMenuRadioGroup
                   value={theme}
-                  onValueChange={(v) => setTheme(v as "light" | "dark" | "system")}
+                  onValueChange={(v) =>
+                    setTheme(v as "light" | "dark" | "system")
+                  }
                 >
                   <DropdownMenuRadioItem value="light">
                     <SunIcon />
